@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#10101d">
+<title>CriArt AI</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#10101d;color:#f7f4ff;font-family:Arial,sans-serif}
+header{padding:26px 20px 18px;background:linear-gradient(135deg,#30206b,#17152d)}
+.logo{font-size:28px;font-weight:800;letter-spacing:-1px}.logo span{color:#c5a4ff}
+header p{color:#d7d0ef;margin:7px 0 0;font-size:14px}
+main{padding:18px;max-width:650px;margin:auto}
+.tabs{display:flex;gap:8px;margin:5px 0 18px}.tab{flex:1;border:1px solid #39334f;background:#1c1a2c;color:#ddd5f5;padding:12px 6px;border-radius:13px;font-weight:700}
+.tab.active{background:#7652d6;color:white;border-color:#9878ef}
+.panel{background:#1b192b;border:1px solid #37314d;border-radius:18px;padding:18px}
+h2{margin:0 0 8px;font-size:21px}.sub{color:#b9b2cc;font-size:13px;line-height:1.5;margin:0 0 16px}
+label{display:block;font-size:13px;color:#d9d2e9;margin:12px 0 7px}
+textarea,select{width:100%;border:1px solid #49415f;border-radius:12px;background:#11101c;color:white;padding:13px;font:15px Arial}
+textarea{min-height:110px;resize:vertical}
+button.generate{width:100%;margin-top:14px;padding:14px;border:0;border-radius:13px;background:linear-gradient(90deg,#8058e5,#b04bc5);color:white;font-size:15px;font-weight:800}
+.notice{margin-top:14px;padding:12px;border-radius:12px;background:#29233b;color:#d9cfff;font-size:13px;line-height:1.5}
+.result{margin-top:12px;color:#f0dfff;font-size:13px;line-height:1.5}
+footer{text-align:center;color:#827b96;font-size:12px;padding:22px}
+</style>
+</head>
+<body>
+<header><div class="logo">✦ CriArt <span>AI</span></div><p>Transforme suas ideias em arte e música.</p></header>
+<main>
+<div class="tabs">
+<button class="tab active" onclick="show('image',this)">🎨 Imagens</button>
+<button class="tab" onclick="show('draw',this)">✏️ Desenhos</button>
+<button class="tab" onclick="show('music',this)">🎵 Músicas</button>
+</div>
+<section class="panel">
+<div id="image" class="tool">
+<h2>Gerar imagem</h2><p class="sub">Descreva a imagem que você imaginou.</p>
+<label>O que você quer criar?</label><textarea placeholder="Ex.: uma cidade futurista ao pôr do sol, estilo anime..."></textarea>
+<label>Estilo</label><select><option>Realista</option><option>Anime</option><option>3D</option><option>Aquarela</option><option>Fantasia</option></select>
+<button class="generate" onclick="connect('imagem')">✨ Criar imagem</button>
+</div>
+<div id="draw" class="tool" style="display:none">
+<h2>Criar desenho</h2><p class="sub">Crie uma ideia para ilustração ou desenho.</p>
+<label>Descreva seu desenho</label><textarea placeholder="Ex.: um dragão amigável em uma floresta mágica..."></textarea>
+<label>Estilo do desenho</label><select><option>Desenho animado</option><option>Mangá</option><option>Esboço a lápis</option><option>Pixel art</option><option>Livro de colorir</option></select>
+<button class="generate" onclick="connect('desenho')">🖍️ Criar desenho</button>
+</div>
+<div id="music" class="tool" style="display:none">
+<h2>Criar música</h2><p class="sub">Descreva a música que gostaria de ouvir.</p>
+<label>Ideia ou tema da música</label><textarea placeholder="Ex.: uma música alegre sobre amizade e aventura..."></textarea>
+<label>Gênero musical</label><select><option>Pop</option><option>Funk</option><option>Rap</option><option>Rock</option><option>Eletrônica</option><option>Lo-fi</option></select>
+<button class="generate" onclick="connect('música')">🎧 Criar música</button>
+</div>
+<div class="notice">ℹ️ Esta é a versão inicial do CriArt AI. A interface já funciona, mas a geração real precisa ser conectada a um serviço de inteligência artificial e a um servidor seguro. Não coloque senhas ou chaves de API neste aplicativo.</div>
+<div id="result" class="result" aria-live="polite"></div>
+</section>
+</main>
+<footer>CriArt AI • Projeto Android inicial • Versão 1.0</footer>
+<script>
+function show(id,btn){
+ document.querySelectorAll('.tool').forEach(x=>x.style.display='none');
+ document.getElementById(id).style.display='block';
+ document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+ btn.classList.add('active');document.getElementById('result').textContent='';
+}
+function connect(kind){
+ document.getElementById('result').textContent='Seu pedido de '+kind+' está pronto para ser enviado. Para gerar o resultado, falta conectar um serviço de IA ao aplicativo.';
+}
+</script>
+</body></html>
